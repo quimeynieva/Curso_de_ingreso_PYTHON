@@ -5,8 +5,9 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre:Agustina Quimey
+apellido: Nieva
+reentrega del ejercicio por un error que noté después
 ---
 TP: IF_Iluminacion
 ---
@@ -18,7 +19,7 @@ Todas las lámparas están  al mismo precio de $800 pesos final.
 		D.	Si compra 3  lamparitas bajo consumo marca "ArgentinaLuz"  el descuento es del 15%, si es  “FelipeLamparas” se hace un descuento del 10 % y si es de otra marca un 5%.
 		E.	Si el importe final con descuento suma más de $4000  se obtien un descuento adicional de 5%.
 '''
-
+    
 class App(customtkinter.CTk):
     
     def __init__(self):
@@ -43,8 +44,41 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        marca= (self.combobox_marca.get())
+        cantidad = int(self.combobox_cantidad.get())
+        precio = 800
+        total = precio * cantidad 
         
+        if cantidad >= 6:
+             descuento = 0.5
+          
+        if cantidad == 5:
+            if  marca == "argentinaluz":
+                descuento= 0.4
+            elif marca =="FelipeLamparas":
+                descuento = 0.25
+            else:
+                descuento= 0.2
+        if cantidad == 4:
+            if marca == "ArgentinaLuz" or marca == "FelipeLamparas":
+                descuento = 0.25
+            else:
+                descuento = 0.2
+        if cantidad == 3:    
+            if marca =="ArgentinaLuz":
+                descuento = 0.15
+            elif marca == "FelipeLamparas":
+                descuento = 0.1
+            else:
+                descuento = 0.05
+            
+            
+        precio_final = total - (total * descuento)
+        
+        if precio_final > 4000: 
+            precio_final = precio_final - (precio_final*0.05)
+        
+        alert("total", precio_final)
     
 if __name__ == "__main__":
     app = App()

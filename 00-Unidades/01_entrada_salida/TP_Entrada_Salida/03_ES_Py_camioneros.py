@@ -3,10 +3,10 @@ from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
-
+import math 
 '''
-nombre:
-apellido:
+nombre: Agustina Quimey
+apellido: Nieva
 ---
 TP: ES_Camioneros
 ---
@@ -45,11 +45,23 @@ class App(customtkinter.CTk):
         self.btn_tiempo_llegada = customtkinter.CTkButton(master=self, text="Calcular tiempo de llegada", command=self.btn_tiempo_llegada_on_click)
         self.btn_tiempo_llegada.grid(row=4, pady=10, padx=30, columnspan=2, sticky="nsew")
     
+    
+    # si cada camión puede transportar 3500 kg, es equivalente a 3.5 toneladas
+    # si para transportar 3.5 toneladas uso 1 camion
+    # para transportar x toneladas uso = x / 3.5 
+    
+    # para que siempre se redondee hacia arriba uso math.ceil
     def btn_cantidad_camiones_on_click(self):
-        pass
-
+        toneladas =float(self.txt_toneladas.get())
+        camiones = math.ceil(toneladas / 3.5)
+        alert ("horas", camiones)
+        
+    # si recorre 90 km en 1 hora
+    # en recorre x km en  = x / 90
     def btn_tiempo_llegada_on_click(self):
-        pass
+      x= float(self.txt_kilometros.get())
+      horas = x / 90
+      alert ("horas", horas)
     
     
 if __name__ == "__main__":
